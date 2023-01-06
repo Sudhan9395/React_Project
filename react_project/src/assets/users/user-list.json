@@ -1,0 +1,22 @@
+{
+    "users": [
+        {
+            "firstname": "Sudhan",
+            "email": "sudhansankar.sankar@gmail.com",
+            "password": "$ud#an9395",
+            "role": "Admin"
+        },
+        {
+            "firstname": "Sankar",
+            "email": "sankar7365@gmail.com",
+            "password": "$ank@r7365",
+            "role": "User"
+        },
+        {
+            "firstname": "Vijay",
+            "email": "vijay123@gmail.com",
+            "password": "Vij@y9395",
+            "role": "User"
+        }
+    ]
+}

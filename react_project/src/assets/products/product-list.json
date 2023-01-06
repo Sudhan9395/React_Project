@@ -1,0 +1,58 @@
+{
+    "products": [
+        {
+            "Id": 1,
+            "Name": "IPhone 11",
+            "ImagePath": "/assets/images/product-image/electronics/mobiles/IPhone11.PNG",
+            "Price": 45000,
+            "Description": "You can snap tons of cool pictures with the iPhone 11 Pro's powerful camera and telephoto lens, while taking advantage of features like Night Mode and QuickTake. Give your photography skills a boost with these features.",
+            "Category": "electronics",
+            "AvailableCount": 130
+        },
+        {
+            "Id": 2,
+            "Name": "IPhone 12",
+            "ImagePath": "/assets/images/product-image/electronics/mobiles/IPhone11.PNG",
+            "Price": 60000,
+            "Description": "You can snap tons of cool pictures with the iPhone 12 Pro's powerful camera and telephoto lens, while taking advantage of features like Night Mode and QuickTake. Give your photography skills a boost with these features.",
+            "Category": "electronics",
+            "AvailableCount": 103
+        },
+        {
+            "Id": 3,
+            "Name": "IPhone 13",
+            "ImagePath": "/assets/images/product-image/electronics/mobiles/IPhone11.PNG",
+            "Price": 110000,
+            "Description": "You can snap tons of cool pictures with the iPhone 13 Pro's powerful camera and telephoto lens, while taking advantage of features like Night Mode and QuickTake. Give your photography skills a boost with these features.",
+            "Category": "electronics",
+            "AvailableCount": 80
+        },
+        {
+            "Id": 4,
+            "Name": "Nike Running Shoe",
+            "ImagePath": "/assets/images/product-image/apparel/Nike_Shoes.PNG",
+            "Price": 6525,
+            "Description": "You can snap tons of cool pictures with the iPhone 11 Pro's powerful camera and telephoto lens, while taking advantage of features like Night Mode and QuickTake. Give your photography skills a boost with these features.",
+            "Category": "apparel",
+            "AvailableCount": 10
+        },
+        {
+            "Id": 5,
+            "Name": "Gillete Trimmer",
+            "ImagePath": "/assets/images/product-image/personalcare/GilleteTrimmer.PNG",
+            "Price": 3500,
+            "Description": "You can snap tons of cool pictures with the iPhone 12 Pro's powerful camera and telephoto lens, while taking advantage of features like Night Mode and QuickTake. Give your photography skills a boost with these features.",
+            "Category": "personalcare",
+            "AvailableCount": 13
+        },
+        {
+            "Id": 6,
+            "Name": "Puma Trainning Shoes",
+            "ImagePath": "/assets/images/product-image/electronics/mobiles/IPhone11.PNG",
+            "Price": 4200,
+            "Description": "You can snap tons of cool pictures with the iPhone 13 Pro's powerful camera and telephoto lens, while taking advantage of features like Night Mode and QuickTake. Give your photography skills a boost with these features.",
+            "Category": "apparel",
+            "AvailableCount": 5
+        }
+    ]
+}

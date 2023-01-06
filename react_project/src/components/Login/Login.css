@@ -1,0 +1,44 @@
+.login-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 100px;
+}
+
+.signin-title{
+    font-size: x-large;
+    margin-bottom: 20px;
+}
+
+.login-input {
+    padding: 10px;
+    width: 20%;
+}
+
+.login-btn {
+    margin: 30px;
+    width: 20%;
+}
+
+.btn-submit {
+    background-color: #3f51b5;
+    border: none;
+    color: white;
+    padding: 10px;
+    width: 100%;
+    border-radius: 5px;
+}
+
+.btn-submit:hover {
+    cursor: pointer;
+}
+
+.signup-link {
+    display: inline-block;
+    margin: 15px 0px;
+}
+
+.copyright {
+    margin: 20px;
+    padding: 10px;
+}

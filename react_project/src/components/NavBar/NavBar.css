@@ -1,0 +1,90 @@
+.navbar {
+    background-color: #3f51b5;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+}
+
+.logo {
+    display: inline-flex;
+    padding: 15px;
+    align-items: center;
+}
+
+.logo:hover {
+    cursor: pointer;
+}
+
+.logo-text {
+    padding: 5px;
+}
+
+.search-items{
+    width: 25%;
+}
+
+.searchbar {
+    height: 20px;
+    width: 100%;
+    margin: 10px;
+    font-size: 14px;
+    padding: 10px;
+    background-image: url('../../assets/images/icons/search-icon.png');                               
+    background-repeat: no-repeat;
+    background-position: left center;
+    padding-left: 40px;
+    background-color: #495bc2;
+    border: 1px solid #3f51b5;
+    box-shadow: none;
+    border-radius: 10PX;
+    color: white;
+}
+
+.searchbar:focus{
+    outline: none;
+    border: 1px solid #3f51b5;
+}
+
+.searchbar::placeholder {
+    color: white;
+    opacity: 0.5;
+}
+
+.menu-items {
+    display: inline-flex;
+    align-items: center;
+}
+
+.menu-items-list {
+    display: inline-flex;
+    margin: 0px;
+    padding: 0px;
+}
+
+.menu-item {
+    list-style-type: none;
+    padding: 10px 15px;
+}
+
+.button-primary{
+    color: white;
+    background-color: #3f51b5;
+    border: none;
+    text-decoration: underline;
+}
+
+.button-primary:hover {
+    cursor: pointer;
+}
+
+.button-logout {
+    background-color: rgb(243, 78, 106);
+    border: 0px;
+    padding: 10px;
+    color: white;
+    border-radius: 5px;
+}
+
+.button-logout:hover {
+    cursor: pointer;
+}
