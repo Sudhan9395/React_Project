@@ -1,6 +1,7 @@
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { Link, useLocation } from "react-router-dom";
 import './NavBar.css';
+import React from 'react';
 
 const NavBar = (props) => {
     const location = useLocation();

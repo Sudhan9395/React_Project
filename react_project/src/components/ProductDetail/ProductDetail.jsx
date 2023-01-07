@@ -2,8 +2,9 @@ import NavBar from "../NavBar/NavBar";
 import { Link, useLocation } from 'react-router-dom';
 import { ToggleButton, ToggleButtonGroup, CardMedia } from '@mui/material';
 import { TextField, Button } from '@mui/material';
-import { useState } from "react";
-import './ProductDetail.css'
+import React, { useState } from "react";
+import './ProductDetail.css';
+
 
 const ProductDetail = () => {
     const param = useLocation();
@@ -72,7 +73,7 @@ const ProductDetail = () => {
                             />
                         </div>
                         <div className="btn-order">
-                            <Link>
+                            <Link to="/orders" state={{user: param.state.user, product: product, quantity: productQuantity}}>
                                 <Button size="small" variant="contained" color="primary">
                                     PLACE ORDER
                                 </Button>

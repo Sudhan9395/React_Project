@@ -4,6 +4,7 @@ import { TextField } from '@mui/material';
 import { Link } from "react-router-dom";
 import NavBar from "../NavBar/NavBar";
 import './SignUp.css';
+import React from 'react';
 
 const SignUp = () => {
     return(
