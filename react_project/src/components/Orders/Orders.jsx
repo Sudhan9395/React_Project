@@ -12,6 +12,16 @@ const Orders = () => {
 
     const [stepCount, setStepCount] = useState(2);
 
+    const OnNextClickHandler = () => {
+        let step = stepCount;
+        setStepCount(step+1);
+    }
+
+    const OnBackClickHandler = () => {
+        let step = stepCount;
+        setStepCount(step-1);
+    }
+
     return(
         <div className="orders-container">
             <NavBar IsUserPage={true} UserRole={param.state.user.role} />
@@ -73,7 +83,7 @@ const Orders = () => {
                             <span>{product.Description}</span>
                         </div>
                         <div className="product-price">
-                            <span> &#8377;  {product.Price}</span>
+                            <span> &#8377;  {param.state.quantity * product.Price}</span>
                         </div>
                     </div>
                     <div className="address-summary">
@@ -101,7 +111,7 @@ const Orders = () => {
             <div className="btn-order">
                 <div className="btn-back">
                     <Link to="/orders" state={{user: param.state.user, product: product}}>
-                        <Button size="small" variant="contained" color="action" disabled={stepCount===0}>
+                        <Button size="small" variant="contained" color="action" disabled={stepCount===0} onClick={OnBackClickHandler}>
                             BACK
                         </Button>
                     </Link>
@@ -110,7 +120,7 @@ const Orders = () => {
                     {
                         stepCount !== 2 &&
                         <Link to="/orders" state={{user: param.state.user, product: product}}>
-                            <Button size="small" variant="contained" color="primary">
+                            <Button size="small" variant="contained" color="primary" onClick={OnNextClickHandler}>
                                 NEXT
                             </Button>
                         </Link>

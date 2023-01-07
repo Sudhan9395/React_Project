@@ -19,7 +19,7 @@ const ProductDetail = () => {
     }
 
     const ProductQuantityHandler = (e) => {
-        setProductQuantity(e.ta.value);
+        setProductQuantity(e.target.value);
     }
 
     return (
