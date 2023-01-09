@@ -10,6 +10,10 @@ const NavBar = (props) => {
         console.log(e.target.value);
     }
 
+    const OnLogoClicked = () => {
+        window.location = 'http://localhost:3000/';
+    }
+
     return (
         <div className='navbar'>
             <div className='logo' onClick={OnLogoClicked}>
@@ -59,10 +63,6 @@ const NavBar = (props) => {
             </div>
         </div>
     );
-}
-
-const OnLogoClicked = () => {
-    window.location = 'http://localhost:3000/';
 }
 
 export default NavBar;

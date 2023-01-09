@@ -1,0 +1,26 @@
+{
+    "address": [
+        {
+            "type": "Work",
+            "doorNo": "33/A4",
+            "apartmentName": "Pearl Lalitha Apartment",
+            "street": "New Colony 4th Street",
+            "area": "Velachery",
+            "city": "Chennai",
+            "state": "Tamilnadu",
+            "landmark": "Near TCS building",
+            "zipcode": "600042"
+        },
+        {
+            "type": "Home",
+            "doorNo": "7/4A",
+            "apartmentName": "S.S Nivas",
+            "street": "Sri Nangai Nagar",
+            "area": "Akkarai",
+            "city": "Kanyakumari",
+            "state": "Tamilnadu",
+            "landmark": "Near New Bridge",
+            "zipcode": "629704"
+        }
+    ]
+}

@@ -3,14 +3,14 @@ import { Stepper, Step, StepLabel } from "@material-ui/core";
 import { Button, CardMedia } from '@mui/material';
 import { Link, useLocation } from 'react-router-dom';
 import './Orders.css'
-import { useState } from "react";
-import React from 'react';
+import React, { useState } from "react";
 
-const Orders = () => {
+const Orders = (props) => {
     const param = useLocation();
     const product = param.state.product;
+    const quantity = param.state.quantity;
 
-    const [stepCount, setStepCount] = useState(2);
+    const [stepCount, setStepCount] = useState(param.state.step !== undefined ? param.state.step : 0);
 
     const OnNextClickHandler = () => {
         let step = stepCount;
@@ -74,7 +74,7 @@ const Orders = () => {
                             <h1 className="product-name">{product.Name}</h1>
                         </div>
                         <div className="product-quantity">
-                            Quantity : {param.state.quantity}
+                            Quantity : {quantity}
                         </div>
                         <div className="product-category">
                             <span>Category: <b>{product.Category}</b></span>
@@ -83,7 +83,7 @@ const Orders = () => {
                             <span>{product.Description}</span>
                         </div>
                         <div className="product-price">
-                            <span> &#8377;  {param.state.quantity * product.Price}</span>
+                            <span> &#8377;  {quantity*product.Price}</span>
                         </div>
                     </div>
                     <div className="address-summary">
@@ -110,7 +110,7 @@ const Orders = () => {
             }
             <div className="btn-order">
                 <div className="btn-back">
-                    <Link to="/orders" state={{user: param.state.user, product: product}}>
+                    <Link to={stepCount===2 ? "/addresses" : "/orders"} state={{user: param.state.user, product: product}}>
                         <Button size="small" variant="contained" color="action" disabled={stepCount===0} onClick={OnBackClickHandler}>
                             BACK
                         </Button>
@@ -119,7 +119,7 @@ const Orders = () => {
                 <div className="btn-next">
                     {
                         stepCount !== 2 &&
-                        <Link to="/orders" state={{user: param.state.user, product: product}}>
+                        <Link to={stepCount===0 ? "/addresses" : "/orders"} state={{user: param.state.user, product: product}}>
                             <Button size="small" variant="contained" color="primary" onClick={OnNextClickHandler}>
                                 NEXT
                             </Button>

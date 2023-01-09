@@ -2,17 +2,27 @@
     margin: 20px 100px;
 }
 
+.product-items-section {
+    display: flex;
+    margin: 20px 10%;
+    justify-content: space-around;
+}
+
 .order-summary-section{
     display: flex;
-    margin: 10px 15%;
-    padding: 40px;
+    margin: 5% 15%;
+    padding: 10px;
     justify-content: space-around;
     box-shadow: 2px 2px rgb(241, 239, 239);
 }
 
+.product-image {
+    width: 70%;
+}
+
 .product-summary {
     border-right: 1px solid #000;
-    
+    height: 300px;
 }
 
 .product-detail {
@@ -49,10 +59,8 @@
 }
 
 .btn-order {
-    width: 20%;
-    margin: 5px 30%;
     display: flex;
-    justify-content: space-evenly;
+    justify-content: center;
 }
 
 .address-summary {
