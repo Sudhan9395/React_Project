@@ -9,6 +9,7 @@ import './ProductDetail.css';
 const ProductDetail = () => {
     const param = useLocation();
     const product = param.state.product;
+    const products = param.state.allProducts;
 
     const [toggleMenu, setToggleMenu] = useState('all');
     const [productQuantity, setProductQuantity] = useState(1);
@@ -24,7 +25,7 @@ const ProductDetail = () => {
 
     return (
         <div className="product-detail-container">
-            <NavBar IsUserPage={true} UserRole={param.state.user.role} />
+            <NavBar IsUserPage={true} User={param.state.user} Products={products} />
             <div className="toggle-menu">
                 <ToggleButtonGroup
                     color="primary"
@@ -44,7 +45,7 @@ const ProductDetail = () => {
                     <CardMedia
                         component="img"
                         height="auto"
-                        image='{product.ImagePath}'
+                        image={product.ImagePath}
                         alt={product.Name}
                     />
                 </div>
@@ -73,7 +74,7 @@ const ProductDetail = () => {
                             />
                         </div>
                         <div className="btn-order">
-                            <Link to="/orders" state={{user: param.state.user, product: product, quantity: productQuantity}}>
+                            <Link to="/orders" state={{user: param.state.user, product: product, quantity: productQuantity, products: products}}>
                                 <Button size="small" variant="contained" color="primary">
                                     PLACE ORDER
                                 </Button>

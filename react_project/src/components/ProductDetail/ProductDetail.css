@@ -10,7 +10,12 @@
     border: 1px solid #000;
 }
 
+.product-image img {
+    height: 100%;
+}
+
 .product-detail {
+    width: 50%;
     margin: 10px 70px;
 }
 

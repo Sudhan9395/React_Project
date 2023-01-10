@@ -4,7 +4,7 @@
 
 .product-items-section {
     display: flex;
-    margin: 20px 10%;
+    margin: 50px 10%;
     justify-content: space-around;
 }
 
@@ -14,15 +14,11 @@
     padding: 10px;
     justify-content: space-around;
     box-shadow: 2px 2px rgb(241, 239, 239);
-}
-
-.product-image {
-    width: 70%;
+    font-size: larger;
 }
 
 .product-summary {
     border-right: 1px solid #000;
-    height: 300px;
 }
 
 .product-detail {
@@ -64,6 +60,11 @@
 }
 
 .address-summary {
-    width: 60%;
+    width: 100%;
     padding: 10px;
+}
+
+.address-summary div{
+    padding: 5;
+    font-size: larger;
 }

@@ -5,10 +5,13 @@ import { Link, useLocation } from 'react-router-dom';
 import './Orders.css'
 import React, { useState } from "react";
 
-const Orders = (props) => {
+const Orders = () => {
     const param = useLocation();
     const product = param.state.product;
     const quantity = param.state.quantity;
+    const address = param.state.address;
+    const products = param.state.products;
+
 
     const [stepCount, setStepCount] = useState(param.state.step !== undefined ? param.state.step : 0);
 
@@ -24,7 +27,7 @@ const Orders = (props) => {
 
     return(
         <div className="orders-container">
-            <NavBar IsUserPage={true} UserRole={param.state.user.role} />
+            <NavBar IsUserPage={true} User={param.state.user} Products={products} />
             <div className="orders-step-container">
                 <Stepper activeStep={stepCount}>
                     <Step>
@@ -45,7 +48,7 @@ const Orders = (props) => {
                         <CardMedia
                             component="img"
                             height="auto"
-                            image='{product.ImagePath}'
+                            image={product.ImagePath}
                             alt={product.Name}
                         />
                     </div>
@@ -90,27 +93,27 @@ const Orders = (props) => {
                         <div>
                             <h1>Address Details</h1>
                         </div>
-                        <div>
-                            33/A4, Pearl Lalitha Apartment
+                        <div className="address-name">
+                            {address.name}
                         </div>
-                        <div>
-                            9944606644
+                        <div className="address-contact">
+                            {address.contact}
                         </div>
-                        <div>
-                            Velachery
+                        <div className="address-street">
+                            {address.street},
                         </div>
-                        <div>
-                            Chennai
+                        <div className="address-city">
+                            {address.city},
                         </div>
-                        <div>
-                            600042
+                        <div className="address-state">
+                            {address.state} - {address.zipcode}
                         </div>
                     </div>
                 </div>
             }
             <div className="btn-order">
                 <div className="btn-back">
-                    <Link to={stepCount===2 ? "/addresses" : "/orders"} state={{user: param.state.user, product: product}}>
+                    <Link to={stepCount===2 ? "/addresses" : "/orders"} state={{user: param.state.user, product: product, quantity: quantity, address: address, products: products}}>
                         <Button size="small" variant="contained" color="action" disabled={stepCount===0} onClick={OnBackClickHandler}>
                             BACK
                         </Button>
@@ -119,7 +122,7 @@ const Orders = (props) => {
                 <div className="btn-next">
                     {
                         stepCount !== 2 &&
-                        <Link to={stepCount===0 ? "/addresses" : "/orders"} state={{user: param.state.user, product: product}}>
+                        <Link to={stepCount===0 ? "/addresses" : "/orders"} state={{user: param.state.user, product: product, quantity: quantity, address: address, products: products}}>
                             <Button size="small" variant="contained" color="primary" onClick={OnNextClickHandler}>
                                 NEXT
                             </Button>
@@ -127,7 +130,7 @@ const Orders = (props) => {
                     }
                     {
                         stepCount === 2 &&
-                        <Link to="/orders" state={{user: param.state.user, product: product}}>
+                        <Link to="/userhome" state={{user: param.state.user, orderPlaced: true, products: products}}>
                             <Button size="small" variant="contained" color="primary">
                                 PLACE ORDER
                             </Button>

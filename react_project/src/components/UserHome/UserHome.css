@@ -31,7 +31,7 @@
 
 .card-section {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
     flex-wrap: wrap;
 }
 
@@ -39,12 +39,18 @@
     text-decoration: none;
 }
 
-.icon-section {
-    display: flex;
-    flex-wrap: wrap;
+.btn-buy {
+    margin-right: 50%;
+    display: inline-flex;
 }
 
-.edit-icon {
+.icon-section {
+    display: inline-flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+}
+
+.edit-icon-section {
     display: flex;
     margin: 5px;
     padding: 0px 5px;
@@ -58,7 +64,7 @@
     align-items: center;
 }
 
-.edit-icon:hover {
+.edit-icon-section:hover {
     cursor: pointer;
     background-color: rgb(236, 239, 241);
     border-radius: 50%;
@@ -68,4 +74,24 @@
     cursor: pointer;
     background-color: rgb(236, 239, 241);
     border-radius: 50%;
+}
+
+.order-notification-section div {
+    background-color: rgb(27, 177, 27);
+    color: white;
+}
+
+.delete-notification-section div {
+    background-color: rgb(27, 177, 27);
+    color: white;
+}
+
+.edit-notification-section div{
+    background-color: rgb(27, 177, 27);
+    color: white;
+}
+
+.new-notification-section div {
+    background-color: rgb(27, 177, 27);
+    color: white;
 }

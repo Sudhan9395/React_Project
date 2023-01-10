@@ -1,19 +1,56 @@
 import NavBar from "../NavBar/NavBar";
 import { Link, useLocation } from 'react-router-dom';
-import { Card, CardContent, CardActionArea, CardActions, CardMedia, Typography, Button, ToggleButton, ToggleButtonGroup, Select, MenuItem, InputLabel  } from '@mui/material';
+import { 
+    Card, 
+    CardContent, 
+    CardActionArea, 
+    CardActions, 
+    CardMedia, 
+    Typography, 
+    Button, 
+    ToggleButton, 
+    ToggleButtonGroup, 
+    Select, 
+    MenuItem, 
+    InputLabel, 
+    Snackbar, 
+    SnackbarContent,
+    Dialog,
+    DialogTitle,
+    DialogContent,
+    DialogContentText,
+    DialogActions,
+
+} 
+from '@mui/material';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteRoundedIcon from '@mui/icons-material/DeleteRounded';
 import React, { useState } from "react";
 import './UserHome.css';
+import { useEffect } from "react";
 
 const UserHome = () => {
     const param = useLocation();
     const data = require('../../assets/products/product-list.json');
-    const allProducts = data.products;
+    const modifiedProduct = param.state.modifiedProduct === undefined ? '' : param.state.modifiedProduct;
+    const newProduct = param.state.newProduct === undefined ? '' : param.state.newProduct;
+    const searchText = param.state.searchText === undefined ? '' : param.state.searchText;
 
     const [toggleMenu, setToggleMenu] = useState('all');
     const [sortBy, setSortBy] = useState('default');
-    const [products, setProducts] = useState(allProducts);
+    const [products, setProducts] = useState(param.state.products === undefined ? data.products : param.state.products);
+    const [allProducts, setAllProducts] = useState(param.state.products === undefined ? data.products : param.state.products);
+    const [showOrderNotification, setShowOrderNotification] = useState(param.state.orderPlaced === undefined ? false : param.state.orderPlaced);
+    const [showDeleteNotification, setShowDeleteNotification] = useState(false);
+    const [showEditNotification, setShowEditNotification] = useState(param.state.isModified === undefined ? false : param.state.isModified);
+    const [showAddNotification, setShowAddNotification] = useState(param.state.isAdded === undefined ? false : param.state.isAdded);
+    const [openDeleteConfirmation, setOpenDeleteConfirmation] = useState(false);
+    const [deleteProduct, setDeleteProduct] = useState('');
+
+    useEffect(()=> {
+        setProducts(allProducts.filter((prod) => JSON.stringify(prod.Name.toLowerCase()).includes(searchText.toLowerCase())));
+        // eslint-disable-next-line
+    }, [searchText]);
 
     const SortByHandler = (e) => {
         setSortBy(e.target.value);
@@ -28,7 +65,7 @@ const UserHome = () => {
             setProducts(products.sort((a, b) => (a.Price < b.Price) ? 1 : -1));
         }
         else {
-            setProducts(allProducts);
+            setProducts(products);
         }
     }
 
@@ -40,7 +77,6 @@ const UserHome = () => {
 
     const FilterProductByCategory = category => {
         if(category !== 'all') {
-            console.log(category);
             setProducts(allProducts.filter((product) => product.Category === category));
         }
         else {
@@ -48,9 +84,49 @@ const UserHome = () => {
         }
     }
 
+    const OnDeleteIconClick = (product) => {
+        setOpenDeleteConfirmation(true);
+        setDeleteProduct(product);
+    }
+
+    const CloseAlertHandler = () => {
+        setShowOrderNotification(false);
+        param.state.orderPlaced = false;
+    }
+
+    const CloseDeleteAlertHandler = () => {
+        setShowDeleteNotification(false);
+    }
+
+    const CloseEditAlertHandler = () => {
+        setShowEditNotification(false);
+        param.state.isModified = false;
+    }
+
+    const CloseAddAlertHandler = () => {
+        setShowAddNotification(false);
+        param.state.isAdded = false;
+    }
+
+    const HandleDeleteConfirmation = () => {
+        setOpenDeleteConfirmation(false);
+    }
+
+    const HandleOkDeleteConfirmation = () => {
+        setProducts(products.filter((prd) => prd.Id !== deleteProduct.Id));
+        setAllProducts(allProducts.filter((prd) => prd.Id !== deleteProduct.Id));
+        setShowDeleteNotification(true);
+        setOpenDeleteConfirmation(false);
+    }
+
+    const HandleCancelDeleteConfirmation = () => {
+        setOpenDeleteConfirmation(false);
+
+    }
+
     return(
         <div className="user-home-container">
-            <NavBar IsUserPage={true} UserRole={param.state.user.role} />
+            <NavBar IsUserPage={true} User={param.state.user} Products={products} />
             <div className="toggle-menu">
                 <ToggleButtonGroup
                     color="primary"
@@ -80,7 +156,8 @@ const UserHome = () => {
                 </Select>
             </div>
             <div className="product-container">
-                {products.map((product) => {
+                {
+                    products.map((product) => {
                     return (
                         <div className="product-card" key={product.Id}>
                             <Card sx={{ maxWidth: 345 }}>
@@ -110,29 +187,92 @@ const UserHome = () => {
                                     </CardContent>
                                 </CardActionArea>
                                 <div className="card-section">
-                                    <CardActions>
-                                        <Link to={'/products/'+product.Id} state={{user: param.state, product: product}}>
-                                            <Button size="small" variant="contained" color="primary">
-                                                Buy
-                                            </Button>
-                                        </Link>
-                                    </CardActions>
+                                    <div className="btn-buy">
+                                        <CardActions>
+                                            <Link to={'/products/'+product.Id} state={{user: param.state.user, product: product, allProducts: products}}>
+                                                <Button size="small" variant="contained" color="primary">
+                                                    Buy
+                                                </Button>
+                                            </Link>
+                                        </CardActions>
+                                    </div>
                                     {param.state.user.role === "Admin" &&
                                         <div className="icon-section">
-                                            <div className="edit-icon">
-                                                <EditIcon color="action" />
+                                            <div className="edit-icon-section">
+                                                <Link to={'/modify/'+product.Id} state={{user: param.state.user, product: product, allProducts: products}}>
+                                                    <div className="edit-icon">
+                                                        <EditIcon color="action" />
+                                                    </div>
+                                                </Link>
                                             </div>
-                                            <div className="delete-icon">
+                                            <div className="delete-icon" onClick={() => {OnDeleteIconClick(product)}}>
                                                 <DeleteRoundedIcon color="action" />
                                             </div>
                                         </div>
                                     }
+                                    <div className="delete-confirmation-dialog">
+                                        <Dialog
+                                            open={openDeleteConfirmation}
+                                            onClose={HandleDeleteConfirmation}
+                                            aria-labelledby="alert-dialog-title"
+                                            aria-describedby="alert-dialog-description"
+                                        >
+                                            <DialogTitle id="alert-dialog-title">
+                                                {"Confirm deletion of product!"}
+                                            </DialogTitle>
+                                            <DialogContent>
+                                            <DialogContentText id="alert-dialog-description">
+                                                Are you sure you want to delete the product?
+                                            </DialogContentText>
+                                            </DialogContent>
+                                            <DialogActions>
+                                            <Button variant="contained" color="primary" onClick={() => {HandleOkDeleteConfirmation(product)}}>Ok</Button>
+                                            <Button onClick={HandleCancelDeleteConfirmation}>Cancel</Button>
+                                            </DialogActions>
+                                        </Dialog>
+                                    </div>
                                 </div>
                             </Card>
                         </div>
                     )
                 })}
                 
+            </div>
+            <div className="delete-notification-section">
+                <Snackbar 
+                    open={showDeleteNotification} 
+                    autoHideDuration={5000} 
+                    anchorOrigin= {{vertical: "top", horizontal: "right"}}
+                    onClose={CloseDeleteAlertHandler}>
+                    <SnackbarContent message={`Product ${deleteProduct.Name} deleted Successfully!`} />
+                </Snackbar>
+            </div>
+            <div className="edit-notification-section">
+                <Snackbar 
+                    open={showEditNotification} 
+                    autoHideDuration={5000} 
+                    anchorOrigin= {{vertical: "top", horizontal: "right"}}
+                    onClose={CloseEditAlertHandler}>
+                    <SnackbarContent message={`Product ${modifiedProduct.Name} modified Successfully!`} />
+                </Snackbar>
+            </div>
+            <div className="new-notification-section">
+                <Snackbar 
+                    open={showAddNotification} 
+                    autoHideDuration={5000} 
+                    anchorOrigin= {{vertical: "top", horizontal: "right"}}
+                    onClose={CloseAddAlertHandler}>
+                    <SnackbarContent message={`Product ${newProduct.Name} added Successfully!`} />
+                </Snackbar>
+            </div>
+            <div className="order-notification-section">
+                <Snackbar 
+                    open={showOrderNotification} 
+                    autoHideDuration={5000} 
+                    anchorOrigin= {{vertical: "top", horizontal: "right"}}
+                    onClose={CloseAlertHandler}>
+                    <SnackbarContent message='Order placed successfully!' />
+                </Snackbar>
             </div>
         </div>
     );

@@ -2,7 +2,7 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    margin:10px 30%;
+    margin:10px 35%;
 }
 
 .text-section {
@@ -21,11 +21,12 @@
 
 .address-input {
     padding: 10px;
-    margin: 10px;
+    margin: 10px 20%;
 }
 
 .btn-save {
-    padding: 30px;
+    padding: 10px;
+    margin: 10px 20%;
 }
 
 .btn-save button{
@@ -35,4 +36,9 @@
 .btn-order {
     display: flex;
     justify-content: center;
+}
+
+.notification-section div{
+    background-color: red;
+    color: white;
 }
